@@ -38,18 +38,57 @@ The 2022 Threat Detection Report highlights critical vulnerabilities, adversary 
 ---
 
 ## Adversary Groups
+
 ### Gootkit
-- **Tactics:** Uses SEO poisoning to lure victims into downloading malicious payloads.
-- **Targets:** Financial data and credentials.
+- **Tactics:**  
+  Gootkit, through its evolution into **Gootloader**, leverages **SEO poisoning** to manipulate search engine results. This tactic tricks users into visiting malicious websites that host fake download links or exploit kits. The campaign is specifically designed to appear legitimate, often mimicking business-related document downloads.
+
+- **Targets:**  
+  - Credential theft  
+  - Financial data exfiltration  
+  - Initial access for ransomware campaigns  
+
+- **Indicators of Compromise (IoCs):**  
+  - High-ranking but suspicious search results leading to malicious websites.  
+  - Downloads of fake business-related files (e.g., contract templates, invoices).  
+  - Execution of malicious JavaScript or macros within the downloaded files.
+
+- **Detection Tips:**  
+  - Monitor **DNS traffic** for domains linked to Gootkit infrastructure.  
+  - Use **endpoint detection and response (EDR)** tools to analyze execution of suspicious files.  
+  - Implement network filters to block access to known malicious domains.
+
+- **Why Gootkit is Important:**  
+  The evolution of Gootkit into Gootloader demonstrates the increasing sophistication of adversaries using **SEO poisoning**. By exploiting user trust in search engine results, this campaign bypasses many traditional email-based phishing detections. The ability to deliver various payloads, including ransomware, makes it a versatile and dangerous threat.
+
+- **Reference:**  
+  [SEO Poisoning: A Gootloader Story - The DFIR Report](https://thedfirreport.com/2022/05/09/seo-poisoning-a-gootloader-story/)
+
+---
 
 ### Yellow Cockatoo
-- **Tactics:** Delivers phishing campaigns to deploy backdoors and gain persistence in networks.
-- **Targets:** Enterprise systems and personal user data.
+- **Tactics:**  
+  Yellow Cockatoo is known for employing **spear-phishing campaigns** to deliver malicious payloads, such as backdoors, to establish persistence. Emails are often tailored to specific targets, making them appear legitimate and increasing the likelihood of success.
 
-### Ransomware Affiliates
-- **Qbot:** Used for credential harvesting and as an initial access vector.
-- **Bazar:** Facilitates lateral movement within networks.
-- **IcedID:** Delivers ransomware payloads and steals credentials.
+- **Targets:**  
+  - Corporate email accounts  
+  - Internal networks for lateral movement  
+
+- **Indicators of Compromise (IoCs):**  
+  - Suspicious email attachments with unusual file extensions.  
+  - Links leading to credential harvesting pages or unexpected downloads.  
+  - Execution of unauthorized PowerShell scripts following email activity.
+
+- **Detection Tips:**  
+  - Deploy **email filtering and sandboxing tools** to analyze suspicious attachments and URLs.  
+  - Monitor **endpoint activity** for unauthorized PowerShell execution or backdoor installation.  
+  - Train employees to recognize phishing emails and avoid interacting with unknown senders.
+
+- **Why Yellow Cockatoo is Important:**  
+  This adversary highlights the ongoing effectiveness of social engineering in cyberattacks. Their focus on phishing demonstrates the importance of robust email security and employee awareness.
+
+- **Reference:**  
+https://redcanary.com/threat-detection-report/threats/yellow-cockatoo/
 
 ---
 
@@ -93,7 +132,3 @@ The 2022 Threat Detection Report highlights critical vulnerabilities, adversary 
   - [ProxyLogon - CVE-2021-26855](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26855)
   - [ProxyShell - CVE-2021-34473](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34473)
   - [PrintNightmare - CVE-2021-34527](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527)
-- **Adversary Research:**
-  - [Gootkit Overview](https://example.com)
-  - [Yellow Cockatoo Analysis](https://example.com)
-
